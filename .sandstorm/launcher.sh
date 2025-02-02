@@ -2,6 +2,8 @@
 
 set -euo pipefail
 
+VENV=/opt/app-venv
+
 wait_for() {
     local service=$1
     local file=$2
@@ -12,6 +14,9 @@ wait_for() {
 }
 
 # something something folders
+mkdir -p /var/consume
+mkdir -p /var/data
+mkdir -p /var/media
 mkdir -p /var/log
 # Wipe /var/run, since pidfiles and socket files from previous launches should go away
 # TODO someday: I'd prefer a tmpfs for these.
@@ -31,5 +36,5 @@ done
 redis-server --daemonize yes
 
 cd /opt/paperless/src
-python3 manage.py migrate
-python3 manage.py runserver
+$VENV/bin/python3 manage.py migrate
+$VENV/bin/python3 manage.py runserver
