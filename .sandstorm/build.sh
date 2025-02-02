@@ -21,3 +21,13 @@ sudo git pull
 
 sudo sh -c 'pipenv requirements > requirements.txt'
 $VENV/bin/pip install -r /opt/paperless/requirements.txt
+
+sudo mkdir -p /opt/paperless/static
+sudo chmod 777 /opt/paperless/static
+sudo mkdir -p /var/consume
+sudo mkdir -p /var/data
+sudo mkdir -p /var/data/log
+sudo mkdir -p /var/media
+
+cd /opt/paperless/src
+$VENV/bin/python3 manage.py collectstatic
