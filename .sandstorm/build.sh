@@ -29,5 +29,11 @@ sudo mkdir -p /var/data
 sudo mkdir -p /var/data/log
 sudo mkdir -p /var/media
 
+cd /opt/paperless/src-ui
+sudo npm install -g @angular/cli
+sudo npm install
+NG_FORCE_TTY=0
+sudo ng build --configuration production
+
 cd /opt/paperless/src
-$VENV/bin/python3 manage.py collectstatic
+$VENV/bin/python3 manage.py collectstatic --no-input
